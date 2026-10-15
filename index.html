@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#6d3fd6">
+<title>ນ້ອງມັນນີ່ - ບັນທຶກລາຍຮັບລາຍຈ່າຍ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#f5f1ff;--card:#fff;--ink:#1f1438;--mute:#7a6c9b;--line:#e8e0f8;--brand:#6d3fd6;--brand-ink:#fff;--inc:#1f9d78;--exp:#e0455e;--gold:#f2b84b;--sh:0 6px 20px rgba(80,40,160,.09);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#130c24;--card:#1f1537;--ink:#f3edff;--mute:#a99bd0;--line:#32265a;--brand:#a98af5;--brand-ink:#190f33;--inc:#4fd9ae;--exp:#ff7d93;--sh:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#130c24;--card:#1f1537;--ink:#f3edff;--mute:#a99bd0;--line:#32265a;--brand:#a98af5;--brand-ink:#190f33;--inc:#4fd9ae;--exp:#ff7d93;--sh:none;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Lao","Noto Sans Thai",system-ui,sans-serif;line-height:1.55;font-variant-numeric:tabular-nums}
+.app{max-width:480px;margin:0 auto;padding:18px 16px 130px}
+h1{font-size:24px;font-weight:700;margin:2px 0 0;letter-spacing:-.2px}.sub{color:var(--mute);font-size:13px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:var(--sh)}
+.bal{position:relative;overflow:hidden;border:0;border-radius:28px;padding:22px 20px;color:#fff;background:linear-gradient(135deg,#4f25b8,#7c4de6 58%,#a678ff)}
+.bal::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 2px,transparent 2px 16px),repeating-linear-gradient(-45deg,rgba(255,255,255,.07) 0 2px,transparent 2px 16px)}
+.bal>*{position:relative}.bal small{font-size:13px;opacity:.9}
+.bal .big{font-size:40px;line-height:1.15;font-weight:700;margin:4px 0 18px;letter-spacing:-.5px}
+.row{display:flex;gap:10px}.row>div{flex:1;background:rgba(255,255,255,.17);border-radius:16px;padding:11px 13px;font-size:12px;backdrop-filter:blur(4px)}.row b{display:block;font-size:18px;margin-top:2px}
+.month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.month b{font-size:16px}
+.month button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:18px;cursor:pointer;box-shadow:var(--sh)}
+h2{font-size:15px;margin:0 0 12px}
+.item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);cursor:pointer}.item:last-child{border:0}
+.ico{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;font-size:21px;flex:none}
+.t{flex:1;min-width:0}.t b{display:block;font-weight:500;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.t span{font-size:12px;color:var(--mute)}
+.amt{font-weight:700;font-size:15px}.i{color:var(--inc)}.e{color:var(--exp)}.f{color:var(--mute)}
+.empty{color:var(--mute);text-align:center;padding:22px 0;font-size:14px}
+.steps{display:flex;gap:6px;margin-bottom:14px;font-size:12px}
+.steps span{flex:1;text-align:center;padding:7px 4px;border-radius:99px;background:var(--bg);color:var(--mute);border:1px solid transparent}
+.steps span.on{border-color:var(--brand);color:var(--brand);font-weight:700}
+.steps span.done{background:var(--inc);color:#fff;font-weight:700}
+.seg{display:grid;grid-template-columns:repeat(2,1fr);background:var(--bg);border-radius:16px;padding:4px;margin-bottom:16px}
+.seg button{border:0;background:none;color:var(--mute);padding:11px 4px;border-radius:12px;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 2px 8px rgba(60,30,120,.15)}
+.cats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.cat{border:2px solid transparent;background:var(--bg);border-radius:16px;padding:12px 4px;font:inherit;font-size:14px;color:var(--ink);cursor:pointer}.cat span{display:block;font-size:26px}.cat.on{border-color:var(--brand);background:var(--card)}
+label{display:block;font-size:13px;color:var(--mute);margin:0 0 5px}
+input,select{width:100%;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:13px;font:inherit;font-size:16px;margin-bottom:12px}
+input:focus,select:focus{border-color:var(--brand)}
+input.money{font-size:32px;font-weight:700;padding:14px;margin-bottom:8px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.chips button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.go,.alt{width:100%;border:0;border-radius:16px;padding:15px;font:inherit;font-weight:700;font-size:16px;cursor:pointer}
+.go{background:linear-gradient(135deg,#5a2fc9,#8a56f0);color:#fff;box-shadow:0 8px 18px rgba(100,60,200,.3)}
+.alt{background:var(--bg);color:var(--brand);border:1.5px dashed var(--brand);margin-bottom:14px}
+.sm{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 13px;font:inherit;font-size:13px;cursor:pointer}
+.inl{display:flex;gap:8px}.inl input{margin:0}
+.hint{font-size:12px;color:var(--mute)}
+.scan{display:none;gap:12px;align-items:center;margin-bottom:14px;font-size:13px;color:var(--mute);background:var(--bg);border-radius:14px;padding:10px}.scan.on{display:flex}.scan.bad{color:var(--exp);font-weight:700}.scan img{width:56px;height:56px;object-fit:cover;border-radius:10px}
+.nav{position:fixed;left:50%;transform:translateX(-50%);width:calc(100% - 24px);max-width:456px;bottom:calc(10px + env(safe-area-inset-bottom,0px));background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:0 12px 32px rgba(60,30,130,.22);padding:6px 8px}
+.nav div{display:flex;align-items:flex-end}.nav button{flex:1;border:0;background:none;color:var(--mute);font:inherit;font-size:12px;padding:6px;cursor:pointer}.nav button span{display:block;font-size:22px}.nav button.on{color:var(--brand);font-weight:700}
+.nav button[data-v="add"]{flex:none;width:76px;margin-top:-30px;color:var(--ink)}
+.nav button[data-v="add"] span{width:58px;height:58px;margin:0 auto 2px;border-radius:50%;display:grid;place-items:center;font-size:34px;font-weight:400;line-height:1;color:#fff;background:linear-gradient(135deg,#5a2fc9,#8a56f0);border:4px solid var(--card);box-shadow:0 8px 18px rgba(100,60,200,.4)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.toast{position:fixed;left:50%;bottom:112px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:11px 20px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%;text-align:center}.toast.show{opacity:1}
+.view{display:none}.view.on{display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+</head>
+<body>
+<div class="app">
+  <h1>ນ້ອງມັນນີ່</h1>
+  <p class="sub">ບັນທຶກລາຍຮັບລາຍຈ່າຍ ສະແກນສະລິບ ແລະເບິ່ງເງິນແຕ່ລະກະເປົາ</p>
+
+  <section id="v-home" class="view on">
+    <div class="month"><button id="prev" aria-label="ເດືອນກ່ອນ">‹</button><b id="mlabel"></b><button id="next" aria-label="ເດືອນຕໍ່ໄປ">›</button></div>
+    <div class="card bal"><small>ຍັງເຫຼືອເດືອນນີ້</small><div class="big" id="bal">₭0</div>
+      <div class="row"><div>ລາຍຮັບ<b id="inc">₭0</b></div><div>ລາຍຈ່າຍ<b id="exp">₭0</b></div></div></div>
+    <div hidden>
+    <div class="card"><h2>ງົບປະມານລາຍເດືອນ</h2><div id="budget"></div>
+      <div class="inl" style="margin-top:8px"><input id="bin" type="number" inputmode="decimal" min="0" placeholder="ຕັ້ງງົບ (ກີບ)" aria-label="ງົບປະມານ"><button class="sm" id="bset">ຕັ້ງງົບ</button></div></div>
+    <div class="card"><h2>ລາຍຈ່າຍແຍກໝວດ</h2><div class="donut" id="donut"></div></div>
+    <div class="card"><h2>ລາຍການຫຼ້າສຸດ</h2><div id="recent"></div></div>
+    </div>
+  </section>
+
+  <section id="v-add" class="view">
+    <div class="card">
+      <div class="steps" id="steps"><span id="s1">1 ກອກເງິນ</span><span id="s2">2 ສະແກນສະລິບ</span><span id="s3">3 ບັນທຶກ</span></div>
+      <button class="alt" id="scanbtn">📷 ສະແກນສະລິບ / ໃບບິນ (OCR)</button>
+      <input id="file" type="file" accept="image/*" hidden>
+      <div class="scan" id="scan"><img id="thumb" alt="ສະລິບທີ່ເລືອກ"><span id="scantxt"></span></div>
+      <div class="seg"><button id="t-exp" class="on">ລາຍຈ່າຍ</button><button id="t-inc">ລາຍຮັບ</button></div>
+      <label for="amount">ຈຳນວນເງິນ (ກີບ)</label>
+      <input id="amount" class="money" type="number" inputmode="decimal" min="0" placeholder="0">
+      <div class="chips" id="chips"><button type="button" data-q="10000">+10,000</button><button type="button" data-q="50000">+50,000</button><button type="button" data-q="100000">+100,000</button><button type="button" data-q="500000">+500,000</button></div>
+      <div id="catbox"><label>ໝວດໝູ່</label><div class="cats" id="cats"></div></div>
+      <label for="w" id="wl">ກະເປົາ</label><select id="w"></select>
+      <div id="tobox" hidden><label for="w2">ໂອນໄປທີ່</label><select id="w2"></select></div>
+      <label for="note">ບັນທຶກເພີ່ມເຕີມ</label><input id="note" type="text" placeholder="ເຊັ່ນ ຄ່າຈໍ">
+      <label for="date">ວັນທີ</label><input id="date" type="date">
+      <button class="go" id="save">ບັນທຶກລາຍການ</button>
+      <div class="hint" style="text-align:center;margin-top:8px">ຕ້ອງສະແກນສະລິບໃຫ້ຜ່ານ (✅) ກ່ອນ ຈຶ່ງບັນທຶກໄດ້ ສະລິບຕ້ອງເປັນຂອງ 30 ນາທີຫຼ້າສຸດ</div>
+      <button class="sm" id="cancel" style="width:100%;margin-top:10px" hidden>ຍົກເລີກການແກ້ໄຂ</button>
+    </div>
+  </section>
+
+  <section id="v-wal" class="view">
+    <div class="card bal"><small>ຍອດເງິນລວມທຸກກະເປົາ</small><div class="big" id="total" style="margin-bottom:0">₭0</div></div>
+    <div id="wlist"></div>
+    <div class="card"><h2>ເພີ່ມກະເປົາໃໝ່</h2>
+      <label for="wn">ຊື່</label><input id="wn" type="text" placeholder="ເຊັ່ນ ບັນຊີອອມຊັບ BCEL">
+      <label for="wb">ຍອດເລີ່ມຕົ້ນ (ກີບ)</label><input id="wb" type="number" inputmode="decimal" placeholder="0">
+      <button class="go" id="wadd">ເພີ່ມກະເປົາ</button></div>
+  </section>
+
+  <section id="v-list" class="view">
+    <div class="card"><h2>ປະຫວັດທັງໝົດ</h2><div class="hint" style="margin:-6px 0 6px">ແຕະລາຍການເພື່ອແກ້ໄຂ</div><div id="all"></div></div>
+    <button class="alt" id="csv">⬇️ ສົ່ງອອກເປັນ CSV</button>
+  </section>
+</div>
+
+<nav class="nav"><div>
+  <button data-v="home" class="on"><span>🏠</span>ໜ້າຫຼັກ</button>
+  <button data-v="add"><span>+</span>ເພີ່ມ</button>
+  <button data-v="list"><span>📒</span>ປະຫວັດ</button>
+</div></nav>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+var CATS={exp:[["screen","ຄ່າຈໍ","🖥️","#7c4dcc"],["id","ຄ່າໄອດີ","🆔","#f2b84b"]],
+inc:[["screen","ຄ່າຈໍ","🖥️","#7c4dcc"],["id","ຄ່າໄອດີ","🆔","#f2b84b"]],
+tf:[["tf","ໂອນເງິນ","🔁","#9aa0b4"]]};
+var KEY="nong-money-v2",S={wallets:[{id:"w1",name:"ເງິນສົດ",init:0},{id:"w2",name:"ບັນຊີທະນາຄານ",init:0},{id:"w3",name:"e-Wallet",init:0}],tx:[],budget:0};
+try{var raw=localStorage.getItem(KEY);if(raw)S=JSON.parse(raw)}catch(e){}
+var LAO={"เงินสด":"ເງິນສົດ","บัญชีธนาคาร":"ບັນຊີທະນາຄານ"};S.wallets.forEach(function(w){if(LAO[w.name])w.name=LAO[w.name]});
+var type="exp",cat="screen",editId=null,cur=new Date();cur.setDate(1);
+var $=function(i){return document.getElementById(i)};
+var pad=function(n){return String(n).padStart(2,"0")};
+var today=function(){var d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())};
+var fmt=function(n){return "₭"+Number(n).toLocaleString("en-US",{maximumFractionDigits:0})};
+var months=["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ"];
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function info(t,c){var l=CATS[t];return l.filter(function(x){return x[0]==c})[0]||l[l.length-1]}
+function wname(id){var w=S.wallets.filter(function(x){return x.id==id})[0];return w?w.name:"(ລຶບແລ້ວ)"}
+function wbal(w){var b=+w.init;S.tx.forEach(function(t){if(t.type=="inc"&&t.w==w.id)b+=t.amt;if(t.type=="exp"&&t.w==w.id)b-=t.amt;if(t.type=="tf"){if(t.w==w.id)b-=t.amt;if(t.to==w.id)b+=t.amt}});return b}
+function row(t){var a=info(t.type,t.cat),sg=t.type=="inc"?"+":t.type=="exp"?"-":"",cl=t.type=="inc"?"i":t.type=="exp"?"e":"f";
+ var sub=t.type=="tf"?wname(t.w)+" → "+wname(t.to):a[1]+" · "+wname(t.w);
+ return '<div class="item" data-id="'+t.id+'"><div class="ico" style="background:'+a[3]+'26">'+a[2]+'</div><div class="t"><b>'+esc(t.note||a[1])+'</b><span>'+sub+' · '+t.date.split("-").reverse().join("/")+(t.time?" "+t.time:"")+'</span></div><div class="amt '+cl+'">'+sg+fmt(t.amt)+'</div></div>'}
+function render(){
+ var key=cur.getFullYear()+"-"+pad(cur.getMonth()+1);
+ $("mlabel").textContent=months[cur.getMonth()]+" "+cur.getFullYear();
+ var sorted=S.tx.slice().sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:b.id-a.id});
+ var mt=sorted.filter(function(t){return t.date.slice(0,7)==key}),i=0,e=0,by={};
+ mt.forEach(function(t){if(t.type=="inc")i+=t.amt;else if(t.type=="exp"){e+=t.amt;by[t.cat]=(by[t.cat]||0)+t.amt}});
+ $("bal").textContent=fmt(i-e);$("inc").textContent=fmt(i);$("exp").textContent=fmt(e);
+ if(S.budget>0){var p=e/S.budget;$("budget").innerHTML='<div>ໃຊ້ໄປແລ້ວ <b>'+fmt(e)+'</b> ຈາກ '+fmt(S.budget)+'</div><div class="bar"><i style="width:'+Math.min(100,p*100)+'%;background:'+(p>1?"var(--exp)":p>.8?"var(--gold)":"var(--inc)")+'"></i></div><div class="hint">'+(p>1?"ເກີນງົບ "+fmt(e-S.budget):"ເຫຼືອອີກ "+fmt(S.budget-e))+'</div>'}
+ else $("budget").innerHTML='<div class="hint">ຍັງບໍ່ໄດ້ຕັ້ງງົບ ໃສ່ຍອດດ້ານລຸ່ມເພື່ອຕິດຕາມລາຍຈ່າຍ</div>';
+ var ks=Object.keys(by).sort(function(a,b){return by[b]-by[a]});
+ if(!ks.length)$("donut").innerHTML='<div class="empty" style="width:100%">ຍັງບໍ່ມີລາຍຈ່າຍເດືອນນີ້ ກົດ ➕ ເພື່ອເລີ່ມບັນທຶກ</div>';
+ else{var R=52,C=2*Math.PI*R,off=0,s='<svg viewBox="0 0 132 132" role="img" aria-label="ສັດສ່ວນລາຍຈ່າຍ"><g transform="rotate(-90 66 66)">';
+  ks.forEach(function(k){var len=by[k]/e*C;s+='<circle cx="66" cy="66" r="'+R+'" fill="none" stroke="'+info("exp",k)[3]+'" stroke-width="22" stroke-dasharray="'+len+' '+(C-len)+'" stroke-dashoffset="'+(-off)+'"/>';off+=len});
+  s+='</g></svg><div class="leg">';ks.forEach(function(k){var a=info("exp",k);s+='<div><i style="background:'+a[3]+'"></i>'+a[1]+'<em>'+Math.round(by[k]/e*100)+'%</em></div>'});$("donut").innerHTML=s+'</div>'}
+ $("recent").innerHTML=mt.length?mt.slice(0,5).map(row).join(""):'<div class="empty">ຍັງບໍ່ມີລາຍການ</div>';
+ $("all").innerHTML=sorted.length?sorted.map(row).join(""):'<div class="empty">ຍັງບໍ່ມີລາຍການ</div>';
+ var tot=0;$("wlist").innerHTML=S.wallets.map(function(w){var b=wbal(w);tot+=b;return '<div class="card"><div class="item" style="border:0;padding:0;cursor:default"><div class="ico" style="background:var(--bg)">👛</div><div class="t"><b>'+esc(w.name)+'</b><span>ຍອດຄົງເຫຼືອ</span></div><div class="amt '+(b<0?"e":"")+'">'+fmt(b)+'</div></div><div class="inl" style="margin-top:12px"><input type="number" inputmode="decimal" placeholder="ຍອດຈິງໃນບັນຊີ" aria-label="ຍອດຈິງ '+esc(w.name)+'" id="adj-'+w.id+'"><button class="sm" data-adj="'+w.id+'">ປັບຍອດ</button><button class="sm" data-wdel="'+w.id+'" aria-label="ລຶບກະເປົາ">🗑</button></div></div>'}).join("");
+ $("total").textContent=fmt(tot);
+ var opts=S.wallets.map(function(w){return '<option value="'+w.id+'">'+esc(w.name)+'</option>'}).join("");
+ var v1=$("w").value,v2=$("w2").value;$("w").innerHTML=opts;$("w2").innerHTML=opts;
+ if(v1)$("w").value=v1;if(v2)$("w2").value=v2;else if(S.wallets[1])$("w2").value=S.wallets[1].id;
+}
+function drawCats(){$("cats").innerHTML=(CATS[type]||[]).map(function(c){return '<button class="cat'+(c[0]==cat?" on":"")+'" data-c="'+c[0]+'"><span>'+c[2]+'</span>'+c[1]+'</button>'}).join("")}
+function setType(t,keepCat){type=t;if(!keepCat)cat=CATS[t][0][0];["exp","inc"].forEach(function(x){$("t-"+x).className=x==t?"on":""});
+ $("catbox").hidden=t=="tf";$("tobox").hidden=t!="tf";$("wl").textContent=t=="tf"?"ໂອນຈາກ":"ກະເປົາ";drawCats()}
+function show(v){["home","add","wal","list"].forEach(function(x){$("v-"+x).className="view"+(x==v?" on":"")});
+ document.querySelectorAll(".nav button").forEach(function(b){b.className=b.dataset.v==v?"on":""});window.scrollTo(0,0)}
+function toast(m){var t=$("toast");t.textContent=m;t.className="toast show";clearTimeout(toast.h);toast.h=setTimeout(function(){t.className="toast"},2200)}
+var verified=false,slipTime="",MAX_MIN=30;function setVerified(v){verified=v;if(!v)slipTime="";$("save").style.opacity=v?"1":".55";steps()}
+function steps(){var a=parseFloat($("amount").value)>0;$("s1").className=a?"done":"on";$("s2").className=verified?"done":(a?"on":"");$("s3").className=verified?"on":""}
+function resetForm(){editId=null;$("amount").value="";$("note").value="";$("date").value=today();$("save").textContent="ບັນທຶກລາຍການ";$("cancel").hidden=true;$("scan").className="scan";setVerified(false);setType("exp")}
+document.querySelectorAll(".nav button").forEach(function(b){b.onclick=function(){if(b.dataset.v=="add"&&editId==null)resetForm();show(b.dataset.v)}});
+$("t-exp").onclick=function(){setType("exp")};$("t-inc").onclick=function(){setType("inc")};
+$("cats").onclick=function(ev){var b=ev.target.closest("[data-c]");if(b){cat=b.dataset.c;drawCats()}};
+$("prev").onclick=function(){cur.setMonth(cur.getMonth()-1);render()};$("next").onclick=function(){cur.setMonth(cur.getMonth()+1);render()};
+$("bset").onclick=function(){var v=parseFloat($("bin").value);if(!(v>=0)){toast("ກອກງົບເປັນຕົວເລກ");return}S.budget=v;$("bin").value="";save();render();toast("ຕັ້ງງົບແລ້ວ")};
+function edit(ev){var b=ev.target.closest("[data-id]");if(!b)return;var t=S.tx.filter(function(x){return x.id==b.dataset.id})[0];if(!t)return;
+ editId=t.id;setType(t.type,1);cat=t.cat;drawCats();$("amount").value=t.amt;$("note").value=t.note||"";$("date").value=t.date;$("w").value=t.w;if(t.to)$("w2").value=t.to;
+ $("save").textContent="ບັນທຶກການແກ້ໄຂ";$("cancel").hidden=false;$("scan").className="scan";show("add")}
+$("all").onclick=edit;$("recent").onclick=edit;
+$("cancel").onclick=function(){resetForm();show("list")};
+$("save").onclick=function(){var a=parseFloat($("amount").value);
+ if(!(a>0)){toast("ກອກຈຳນວນເງິນກ່ອນ");$("amount").focus();return}
+ var og=editId?S.tx.filter(function(t){return t.id==editId})[0]:null;
+ if(!(og&&og.amt==a&&og.type==type)&&!verified){toast("ຕ້ອງສະແກນສະລິບໃຫ້ຜ່ານກ່ອນ ຈຶ່ງບັນທຶກໄດ້");return}
+ if(type=="tf"&&$("w").value==$("w2").value){toast("ເລືອກກະເປົາຕົ້ນທາງແລະປາຍທາງໃຫ້ແຕກຕ່າງກັນ");return}
+ if(!S.wallets.length){toast("ເພີ່ມກະເປົາກ່ອນ");show("wal");return}
+ var o={id:editId||Date.now(),type:type,cat:cat,amt:a,note:$("note").value.trim(),date:$("date").value||today(),w:$("w").value};
+ if(verified&&slipTime)o.time=slipTime;else if(og&&og.time)o.time=og.time;
+ if(type=="tf"){o.to=$("w2").value;o.cat="tf"}
+ if(editId)S.tx=S.tx.map(function(t){return t.id==editId?o:t});else S.tx.push(o);
+ var dd=o.date.split("-");cur=new Date(+dd[0],+dd[1]-1,1);
+ save();var was=editId;resetForm();render();show(was?"list":"home");toast(was?"ແກ້ໄຂແລ້ວ":"ບັນທຶກແລ້ວ")};
+$("wadd").onclick=function(){var n=$("wn").value.trim();if(!n){toast("ໃສ່ຊື່ກະເປົາ");return}
+ S.wallets.push({id:"w"+Date.now(),name:n,init:parseFloat($("wb").value)||0});$("wn").value="";$("wb").value="";save();render();toast("ເພີ່ມກະເປົາແລ້ວ")};
+$("wlist").onclick=function(ev){var a=ev.target.closest("[data-adj]"),d=ev.target.closest("[data-wdel]");
+ if(a){var id=a.dataset.adj,v=parseFloat($("adj-"+id).value);if(isNaN(v)){toast("ກອກຍອດຈິງກ່ອນ");return}
+  var w=S.wallets.filter(function(x){return x.id==id})[0];w.init=+w.init+(v-wbal(w));save();render();toast("ປັບຍອດແລ້ວ")}
+ if(d){var id2=d.dataset.wdel;if(S.tx.some(function(t){return t.w==id2||t.to==id2})){toast("ລຶບບໍ່ໄດ້ ຍັງມີລາຍການໃນກະເປົານີ້");return}
+  if(S.wallets.length<2){toast("ຕ້ອງມີຢ່າງໜ້ອຍ 1 ກະເປົາ");return}
+  S.wallets=S.wallets.filter(function(w){return w.id!=id2});save();render();toast("ລຶບກະເປົາແລ້ວ")}};
+$("csv").onclick=function(){try{
+ var L=["ວັນທີ,ປະເພດ,ໝວດ,ກະເປົາ,ປາຍທາງ,ຈຳນວນ,ບັນທຶກ"];
+ S.tx.slice().sort(function(a,b){return a.date<b.date?-1:1}).forEach(function(t){L.push([t.date,{inc:"ລາຍຮັບ",exp:"ລາຍຈ່າຍ",tf:"ໂອນ"}[t.type],info(t.type,t.cat)[1],wname(t.w),t.to?wname(t.to):"",t.amt,'"'+(t.note||"").replace(/"/g,'""')+'"'].join(","))});
+ var bl=new Blob(["\ufeff"+L.join("\n")],{type:"text/csv"}),an=document.createElement("a");an.href=URL.createObjectURL(bl);an.download="nong-money.csv";document.body.appendChild(an);an.click();an.remove()}catch(e){toast("ບັນທຶກໄຟລ໌ບໍ່ສຳເລັດ")}};
+
+/* OCR สลิป ผ่าน Claude (sample + images) */
+function shrink(file){return new Promise(function(res,rej){var im=new Image(),u=URL.createObjectURL(file);im.onload=function(){var m=1400,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;var cx=c.getContext("2d");cx.filter="grayscale(1) contrast(1.4)";cx.drawImage(im,0,0,c.width,c.height);c.toBlob(function(b){res({blob:b,url:u})},"image/jpeg",.85)};im.onerror=rej;im.src=u})}
+function nm(x){return String(x||"").replace(/[\s\u0EC8-\u0ECC]/g,"")}
+function lev(a,b){var d=[],i,j;for(i=0;i<=a.length;i++){d[i]=[i]}for(j=1;j<=b.length;j++)d[0][j]=j;for(i=1;i<=a.length;i++)for(j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]==b[j-1]?0:1));return d[a.length][b.length]}
+function sameName(a,b){a=nm(a);b=nm(b);return a.length>0&&lev(a,b)<=1}
+$("scanbtn").onclick=function(){if(!(parseFloat($("amount").value)>0)){toast("ກອກຈຳນວນເງິນກ່ອນ ແລ້ວຈຶ່ງສະແກນສະລິບ");$("amount").focus();return}$("file").value="";$("file").click()};
+var TW=null;
+function getWorker(){if(!TW)TW=Tesseract.createWorker("lao+eng",1,{langPath:"https://tessdata.projectnaptha.com/4.0.0_fast",logger:function(m){var st=m.status||"";if(st=="recognizing text")$("scantxt").textContent="ກຳລັງອ່ານສະລິບ... "+Math.round(m.progress*100)+"%";else if(/loading/.test(st)&&$("scan").className.indexOf("on")>-1)$("scantxt").textContent="ກຳລັງໂຫຼດຕົວອ່ານ... "+Math.round((m.progress||0)*100)+"%"}}).catch(function(e){TW=null;throw e});return TW}
+window.addEventListener("load",function(){setTimeout(function(){try{if(window.Tesseract)getWorker().catch(function(){})}catch(e){}},400)});
+function hasName(txt,req){var t=nm(txt),q=nm(req),n=q.length,best=99;for(var i=0;i<t.length;i++)for(var l=n-1;l<=n+1;l++){if(i+l<=t.length){var d=lev(t.substr(i,l),q);if(d<best)best=d}}return best<=2}
+$("file").onchange=async function(){var f=$("file").files[0];if(!f)return;
+ var sc=$("scan");sc.className="scan on";setVerified(false);$("scantxt").textContent="ກຳລັງໂຫຼດຕົວອ່ານ (ຄັ້ງທຳອິດອາດໃຊ້ເວລາໜຶ່ງນາທີ)...";
+ try{if(!window.Tesseract)throw{code:"na"};
+  var p=await shrink(f);$("thumb").src=p.url;
+  var w=await getWorker(),res=await w.recognize(p.blob),txt=(res.data&&res.data.text)||"";
+  var REQ="ອຸ່ນເຮືອນ ວົງສີ",errs=[];
+  var mA=txt.match(/(\d{1,3}(?:[,.\s]\d{3})+|\d+)\s*(?:LAK|ກີບ|₭)/i),sa=mA?Number(mA[1].replace(/[,.\s]/g,"")):NaN,ta=parseFloat($("amount").value);
+  if(isNaN(sa))errs.push("ອ່ານຈຳນວນເງິນຈາກສະລິບບໍ່ໄດ້");
+  else if(Math.round(sa)!=Math.round(ta))errs.push("ຈຳນວນເງິນບໍ່ຕົງ (ໃນສະລິບ "+fmt(sa)+" / ທີ່ກອກ "+fmt(ta)+")");
+  if(!hasName(txt,REQ))errs.push("ບໍ່ພົບຊື່ "+REQ+" ໃນສະລິບ");
+  var mt=txt.match(/(\d{2})\/(\d{2})\/(\d{4})\s*(\d{1,2})[:.](\d{2})(?:[:.](\d{2}))?/),sd=mt?new Date(+mt[3],+mt[2]-1,+mt[1],+mt[4],+mt[5],+(mt[6]||0)):null,hm=function(d){return pad(d.getHours())+":"+pad(d.getMinutes())};
+  if(!sd||isNaN(sd))errs.push("ອ່ານວັນທີ/ເວລາຈາກສະລິບບໍ່ໄດ້");
+  else{var age=(Date.now()-sd.getTime())/60000;
+   if(age<-5)errs.push("ເວລາໃນສະລິບຢູ່ໃນອະນາຄົດ ("+hm(sd)+")");
+   else if(age>MAX_MIN)errs.push("ສະລິບເກົ່າເກີນ "+MAX_MIN+" ນາທີ (ໃນສະລິບ "+hm(sd)+" / ຕອນນີ້ "+hm(new Date())+")")}
+  if(errs.length){sc.className="scan on bad";$("scantxt").textContent="❌ ບໍ່ຜ່ານ: "+errs.join(" ແລະ ");return}
+  $("date").value=sd.getFullYear()+"-"+pad(sd.getMonth()+1)+"-"+pad(sd.getDate());slipTime=hm(sd);
+  $("note").value=REQ;setVerified(true);$("scantxt").textContent="✅ ຜ່ານ ຊື່ ຈຳນວນເງິນ ແລະເວລາຕົງກັບສະລິບ ກົດບັນທຶກໄດ້ເລີຍ"}
+ catch(e){sc.className="scan on bad";$("scantxt").textContent="ໂຫຼດຕົວອ່ານບໍ່ໄດ້ ກວດອິນເຕີເນັດແລ້ວລອງໃໝ່ ຫຼື ກອກເອງ"}};
+
+$("amount").addEventListener("input",function(){setVerified(false)});
+$("chips").onclick=function(ev){var b=ev.target.closest("[data-q]");if(!b)return;var v0=parseFloat($("amount").value)||0;$("amount").value=v0+Number(b.dataset.q);setVerified(false)};
+$("date").value=today();drawCats();render();setVerified(false);
+</script>
+</body>
+</html>
